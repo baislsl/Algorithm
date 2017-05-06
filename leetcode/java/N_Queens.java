@@ -25,8 +25,8 @@ public class N_Queens {
 
         public void dfs(int[] a, boolean[] col, boolean[] d1, boolean[]d2, int cur, int n, List<List<String>> ans){
             if(cur == n){
-               ans.add(convert(a, n));
-               return;
+                ans.add(convert(a, n));
+                return;
             }
             for(int i=0;i<n;i++){
                 if(!col[i] && !d1[i+cur] && !d2[i-cur+n] ){
