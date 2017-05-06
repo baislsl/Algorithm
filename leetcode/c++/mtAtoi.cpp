@@ -24,6 +24,3 @@ int myAtoi(char *str){
     return flag*ans;
 }
 
-int main(){
-    printf("%d",INT_MAX);
-}
