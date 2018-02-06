@@ -49,7 +49,7 @@ private:
 	}
 
 public:
-	vector<string> findRepeatedDnaSequences(string s) {
+	vector<string> findRepeatedDnaSequences2(string s) {
 		auto index = fineRepeatImpl(s, 10);
 		vector<string> ans;
 		vector<bool> trace(s.length(), false);
@@ -67,6 +67,40 @@ public:
 		}
 		return ans;
 	}
+
+	// non recursive
+	vector<string> findRepeatedDnaSequences(string s) {
+		int n = s.length();
+		vector<int> ans(n, n);
+		vector<int> last(256, n);
+		for (int i = s.length() - 1; i >=0; i--) {
+			ans[i] = last[s[i]];
+			last[s[i]] = i;
+		}
+
+		for (int len = 2; len <= 10; len++) {
+			for (int i = 0; i < n - len + 1; i++) {
+				int cur = ans[i];
+				char cc = s[i + len - 1];
+				while (cur != n && !(cur + len - 1 < n && cc == s[cur + len - 1])) cur = ans[cur];
+				ans[i] = cur;
+			}
+		}
+
+		vector<bool> trace(n + 1, false);
+		vector<string> res;
+		for (int i = 0; i < n - 10 + 1; i++) {
+			trace[ans[i]] = true;
+			if (ans[i] != n && !trace[i]) {
+				res.push_back(s.substr(i, 10));
+			}
+		}
+
+		return res;
+
+	}
+
+
 };
 
 int main() {
