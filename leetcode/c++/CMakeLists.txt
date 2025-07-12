@@ -1,11 +1,11 @@
-cmake_minimum_required(VERSION 3.6)
+cmake_minimum_required(VERSION 3.31)
 project(leetCode)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
-set(SOURCE_FILES 1001GridIllumination.cpp
-        # 1311.cpp
-        1312.cpp
+include_directories(../../modules)
 
-        )
-add_executable(leetCode ${SOURCE_FILES})
+add_executable(leetCode main.cpp)
+add_executable(3605 3605MinimumStabilityFactorofArray.cpp)
+
+
