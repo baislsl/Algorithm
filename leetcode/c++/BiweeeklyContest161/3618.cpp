@@ -1,19 +1,15 @@
 //
-// Created by baislsl on 2025/7/10.
+// Created by baislsl on 2025/7/19.
 //
 
-#ifndef PRIMETABLE_HPP
-#define PRIMETABLE_HPP
+#include "common.hpp"
 
-#include <bits/stdc++.h>
 using namespace std;
 
 class PrimeTable {
-private:
-    vector<bool> isPrime; // false, false, true, true, false, true, ...
-
 public:
     vector<int> primes; // 2， 3， 5, ...
+    vector<bool> isPrime; // false, false, true, true, false, true, ...
     int n;
 
     PrimeTable(int n) : isPrime(n + 1, true), n(n) {
@@ -41,17 +37,28 @@ public:
         if (x > 1) factors[x] = 1;
         return factors;
     }
+};
 
-    bool isP(int x) {
-        assert(n >= static_cast<double>(x)/n);
-        if (x < isPrime.size()) return isPrime[x];
+class Solution {
+public:
+    using ll = long long;
 
-        for (auto p: primes) {
-            if (p * p > x) return true;
-            if (x % p == 0) return false;
+    long long splitArray(const vector<int> &nums) {
+        PrimeTable pt(100005);
+        ll a = 0;
+        for (int i = 0; i < nums.size(); ++i) {
+            if (pt.isPrime[i]) {
+                a += nums[i];
+            } else {
+                a -= nums[i];
+            }
         }
-        return true;
+        return abs(a);
     }
 };
 
-#endif //PRIMETABLE_HPP
+int main() {
+    Solution s;
+    _print(s.splitArray({2, 3, 4}));
+    _print(s.splitArray({-1, 5, 7, 0}));
+}

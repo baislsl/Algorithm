@@ -5,8 +5,8 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-#pragma region
 #include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 void __print(int x) { cout << x; }
@@ -59,8 +59,5 @@ void _print(T t, V... v) {
 
 template<class T> bool ckmin(T&a, const T& b) { bool B = a > b; a = min(a,b); return B; }
 template<class T> bool ckmax(T&a, const T& b) { bool B = a < b; a = max(a,b); return B; }
-#pragma endregion
-
-#include <bits/stdc++.h>
 
 #endif //COMMON_H

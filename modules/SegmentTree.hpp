@@ -65,6 +65,7 @@ public:
         updatePoint(1, 0, n - 1, idx, val);
     }
 
+    // [l, r]
     T query(int l, int r) {
         return queryRange(1, 0, n - 1, l, r);
     }
